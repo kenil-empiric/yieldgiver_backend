@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 config();
+console.log("etehrs", ethers);
 
 const { API_URL, PRIVATE_KEY, CONTRACT_ADDRESS, PRIVATE_KEY2, PORT } =
   process.env;
