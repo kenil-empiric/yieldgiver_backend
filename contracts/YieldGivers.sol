@@ -444,11 +444,11 @@ contract YieldGivers {
         uint income = Amount;
         console.log("income-------", income);
         require(
-            income >= minInvestAmount * 1000000,
+            income >= minInvestAmount,
             "Please invest more than the minimum amount"
         );
         require(
-            income <= maxInvestAmount * 1000000,
+            income <= maxInvestAmount,
             "Please invest less than the maximum amount"
         );
         require(
@@ -545,11 +545,11 @@ contract YieldGivers {
     }
 
     function setMinInvestAmount(uint minInvAmnt) public onlyOwner {
-        minInvestAmount = minInvAmnt;
+        minInvestAmount = minInvAmnt * 10 ** 6;
     }
 
     function setMaxInvestAmount(uint maxInvAmnt) public onlyOwner {
-        maxInvestAmount = maxInvAmnt;
+        maxInvestAmount = maxInvAmnt * 10 ** 6;
     }
 
     function withdrawContractbalance() public onlyOwner {

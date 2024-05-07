@@ -1,6 +1,6 @@
 // scripts/deploy.js
 require("dotenv").config();
-const { DEV_ADDRESS, AD_ADDRESS, TEAM_ADDRESS,TOKEN_ADDRESS } = process.env;
+const { DEV_ADDRESS, AD_ADDRESS, TEAM_ADDRESS, TOKEN_ADDRESS } = process.env;
 console.log("Dev Address------", DEV_ADDRESS);
 console.log("Ad Address-----", AD_ADDRESS);
 console.log("Team Address------", TEAM_ADDRESS);
@@ -32,4 +32,4 @@ main()
     process.exit(1);
   });
 
-// YieldGivers deployed to: 0x3DF0BDE3C4C97f5Ecc533640cfdA248519B1B451
+// YieldGivers deployed to: 0xb28c79081E027c43c3BBDF92be200f89C163E12D
