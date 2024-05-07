@@ -1,9 +1,10 @@
 // scripts/deploy.js
 require("dotenv").config();
-const { DEV_ADDRESS, AD_ADDRESS, TEAM_ADDRESS } = process.env;
+const { DEV_ADDRESS, AD_ADDRESS, TEAM_ADDRESS,TOKEN_ADDRESS } = process.env;
 console.log("Dev Address------", DEV_ADDRESS);
 console.log("Ad Address-----", AD_ADDRESS);
 console.log("Team Address------", TEAM_ADDRESS);
+console.log("TOKEN_ADDRESS------", TOKEN_ADDRESS);
 
 async function main() {
   const YieldGivers = await ethers.getContractFactory("YieldGivers");
@@ -13,6 +14,7 @@ async function main() {
   const rankTime = Math.floor(new Date().getTime() / 1000);
 
   const yieldgivers = await YieldGivers.deploy(
+    TOKEN_ADDRESS,
     DEV_ADDRESS,
     AD_ADDRESS,
     TEAM_ADDRESS,
@@ -30,4 +32,4 @@ main()
     process.exit(1);
   });
 
-// YieldGivers deployed to: 0xfeD77efAC6E1583916dFe9903c702859747A1EdB
+// YieldGivers deployed to: 0x56B16F27cb3B5732bc3E1dbBF7a275696D9dDE5A
