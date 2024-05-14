@@ -55,7 +55,7 @@ interface IERC20 {
     function balanceOf(address account) external view returns (uint256);
 }
 
-contract YieldGivers {
+contract YieldGiversOne {
     using SafeMath for uint256;
     address public tokenAddress;
     uint public startTime;
@@ -118,14 +118,6 @@ contract YieldGivers {
         uint reward;
         uint time;
     }
-
-    struct PoolMinMax {
-        uint minInvestAmountPool;
-        uint maxInvestAmountPool;
-    }
-
-    mapping(uint => uint256) public totalInvestmentByPool;
-    mapping(uint => PoolMinMax) public pools;
     Invest[] public insurances;
     uint public insuranceIndex;
     uint public insuranceRewardIndex;
@@ -382,17 +374,6 @@ contract YieldGivers {
         }
     }
 
-    function setPoolInvestmentLimits(
-        uint poolId,
-        uint minInvestAmountPool,
-        uint maxInvestAmountPool
-    ) public onlyOwner {
-        pools[poolId] = PoolMinMax(
-            minInvestAmountPool * 10 ** 6,
-            maxInvestAmountPool * 10 ** 6
-        );
-    }
-
     function setPlanOnePeriod(uint planOnePeriod) public onlyOwner {
         planOneDays = planOnePeriod;
     }
@@ -429,14 +410,6 @@ contract YieldGivers {
         percentMultiplier = increasePct;
     }
 
-    function setMinInvestAmount(uint minInvAmnt) public onlyOwner {
-        minInvestAmount = minInvAmnt * 10 ** 6;
-    }
-
-    function setMaxInvestAmount(uint maxInvAmnt) public onlyOwner {
-        maxInvestAmount = maxInvAmnt * 10 ** 6;
-    }
-
     function getIncreasePct() public view returns (uint increasePct) {
         (, uint time) = block.timestamp.trySub(startTime);
         console.log("time====", time);
@@ -468,43 +441,30 @@ contract YieldGivers {
 
     function stake(address referrer, uint typeNum, uint Amount) public payable {
         require(block.timestamp >= startTime, "Not start");
+        uint income = Amount;
+        console.log("income-------", income);
         require(
-            Amount >= minInvestAmount,
+            income >= minInvestAmount,
             "Please invest more than the minimum amount"
         );
         require(
-            Amount <= maxInvestAmount,
+            income <= maxInvestAmount,
             "Please invest less than the maximum amount"
         );
-
         require(
-            totalInvestmentByPool[typeNum].add(Amount) <=
-                pools[typeNum].maxInvestAmountPool,
-            "Exceeds pool investment limit"
-        );
-        require(
-            transferFrom(msg.sender, address(this), Amount),
+            transferFrom(msg.sender, address(this), income),
             "Token transfer failed"
         );
-        totalInvestmentByPool[typeNum] = totalInvestmentByPool[typeNum].add(
-            Amount
-        );
-        bindRelationship(referrer);
-        addInvestment(typeNum, Amount, false);
-        emit Stake(msg.sender, Amount);
-    }
 
-    function getPoolMinMax(uint typeNum) public view returns (uint, uint) {
-        return (
-            pools[typeNum].minInvestAmountPool,
-            pools[typeNum].maxInvestAmountPool
-        );
+        bindRelationship(referrer);
+        addInvestment(typeNum, income, false);
+        emit Stake(msg.sender, income);
     }
 
     function updateReward(uint amount) private returns (uint) {
         uint income = getAmount();
-        // console.log("income in update reward------", income);
-        // console.log("pool updatereward--------", pool);
+        console.log("income in update reward------", income);
+        console.log("pool updatereward--------", pool);
         User storage user = userMap[msg.sender];
         if (amount == 0 || amount > income) amount = income;
         if (amount > pool) amount = pool;
@@ -518,8 +478,8 @@ contract YieldGivers {
             block.timestamp > startTime.add(dayTime.mul(2)) &&
             pool < 10 * 10 ** unit
         ) insuranceTime = block.timestamp.add(dayTime);
-        // console.log("insurance time in update reward-------", insuranceTime);
-        // console.log("amount in update reward------", amount);
+        console.log("insurance time in update reward-------", insuranceTime);
+        console.log("amount in update reward------", amount);
         return amount;
     }
 
@@ -584,6 +544,14 @@ contract YieldGivers {
         _;
     }
 
+    function setMinInvestAmount(uint minInvAmnt) public onlyOwner {
+        minInvestAmount = minInvAmnt * 10 ** 6;
+    }
+
+    function setMaxInvestAmount(uint maxInvAmnt) public onlyOwner {
+        maxInvestAmount = maxInvAmnt * 10 ** 6;
+    }
+
     function withdrawContractbalance() public onlyOwner {
         //         owner.transfer(total);
         emit Withdraw(owner, total);
@@ -632,25 +600,25 @@ contract YieldGivers {
         );
         uint finish = dayTime.mul(period).add(block.timestamp);
         // uint finish = dayTime.mul(period).add(1708853432);
-        // console.log("rate addInvestment--------", rate);
-        // console.log("rate income--------", income);
-        // console.log("totalReward addInvestment-----------", totalReward);
-        // console.log("period addInvestment----------", period);
-        // console.log("finish addInvestment---------", finish);
+        console.log("rate addInvestment--------", rate);
+        console.log("rate income--------", income);
+        console.log("totalReward addInvestment-----------", totalReward);
+        console.log("period addInvestment----------", period);
+        console.log("finish addInvestment---------", finish);
         if (period > 0) {
             require(
-                transfer(dev, income.mul(7).div(100)),
+                transfer(dev, income.mul(70).div(1000)),
                 "Token transfer to dev failed"
             );
             require(
-                transfer(ad, income.mul(7).div(100)),
+                transfer(ad, income.mul(70).div(1000)),
                 "Token transfer to ad failed"
             );
             if (block.timestamp > startTime.add(initialTime)) {
                 pool = pool.add(income.mul(83).div(100));
                 rankPool = rankPool.add(income.mul(3).div(100));
-                // console.log("if pool-----", pool);
-                // console.log("if rank pool-------", rankPool);
+                console.log("if pool-----", pool);
+                console.log("if rank pool-------", rankPool);
             } else {
                 pool = pool.add(income.mul(84).div(100));
                 rankPool = rankPool.add(income.mul(2).div(100));

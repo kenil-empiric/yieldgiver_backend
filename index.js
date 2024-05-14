@@ -268,4 +268,39 @@ app.post("/stake", async function (req, res) {
   }
 });
 
+app.post("/setTotalInvestAmount", isOwner, async function (req, res) {
+  try {
+    const { plan_num, amount } = req.body;
+    console.log("data", plan_num, amount);
+    const totalAmount = await signcontract.setPoolInvestmentLimits(
+      plan_num,
+      0,
+      amount
+    );
+    await totalAmount.wait();
+    res.status(200).json({
+      message: "Set Total Investment Amount successfully",
+      transactionHash: totalAmount.hash,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error });
+  }
+});
+
+app.get("/getTotalInvesment/pool/:id", async function (req, res) {
+  try {
+    const { id } = req.params;
+    const planOneAmount = await contract.getPoolMinMax(id);
+    console.log(
+      "planOneAmount.................",
+      planOneAmount[1].toNumber() / 10 ** 6
+    );
+    res.status(200).json({ planTwoMul: planOneAmount[1].toNumber() / 10 ** 6 });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mesasage: error });
+  }
+});
+
 app.listen(PORT);
