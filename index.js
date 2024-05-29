@@ -13,20 +13,31 @@ config();
 console.log("hello here");
 console.log("etehrs", ethers);
 
-const { API_URL, PRIVATE_KEY, CONTRACT_ADDRESS, PRIVATE_KEY2, PORT } =
-  process.env;
+const {
+  API_URL,
+  PRIVATE_KEY,
+  API_URL_arbitrum,
+  PRIVATE_KEY_arbitrum,
+  CONTRACT_ADDRESS,
+  PRIVATE_KEY2,
+  PORT,
+} = process.env;
 
 const abi = stakeABI.abi;
 
-console.log("API------", API_URL);
-console.log("Private key ----", PRIVATE_KEY);
-console.log("Private key2 -----", PRIVATE_KEY2);
+console.log("API------", API_URL_arbitrum);
+console.log("Private key ----", PRIVATE_KEY_arbitrum);
+// console.log("Private key2 -----", PRIVATE_KEY2);
 console.log("Stack contract Address------", CONTRACT_ADDRESS);
 console.log("Port--------", PORT);
 
-const provider = new ethers.providers.JsonRpcProvider(API_URL);
+const provider = new ethers.providers.JsonRpcProvider(API_URL_arbitrum);
+// const provider = new ethers.providers.JsonRpcProvider(API_URL); // sepolia
+
 const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
-const signer = new ethers.Wallet(PRIVATE_KEY, provider);
+// const signer = new ethers.Wallet(PRIVATE_KEY, provider); //sepolia
+const signer = new ethers.Wallet(PRIVATE_KEY_arbitrum, provider);
+
 const signcontract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
 
 app.post("/setMaxInvestAmount", isOwner, async function (req, res) {
@@ -302,5 +313,33 @@ app.get("/getTotalInvesment/pool/:id", async function (req, res) {
     res.status(500).json({ mesasage: error });
   }
 });
+
+app.get("/getTotalContractBalance", async function (req, res) {
+  try {
+    const planOneAmount = await contract.getTokenBalance();
+    console.log(planOneAmount.toNumber());
+    console.log("planOneAmount.................", planOneAmount / 10 ** 6);
+    res
+      .status(200)
+      .json({ contractbalance: planOneAmount.toNumber() / 10 ** 6 });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mesasage: error });
+  }
+});
+
+app.get("/WithdrawContractBalance",isOwner, async function (req, res) {
+  try {
+    const planOneAmount = await signcontract.withdrawContractbalance();
+    res.status(200).json({
+      message: "Contract Balance Withdraw successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mesasage: error });
+  }
+});
+
+
 
 app.listen(PORT);

@@ -569,13 +569,13 @@ contract YieldGivers {
             block.timestamp >= investment.finish,
             "Cannot withdraw principal before the investment period ends"
         );
-        uint principalAmount = investment.value;
+        uint principalAmount = investment.value ;
         require(transfer(msg.sender, principalAmount), "Token transfer failed");
         user.investment = user.investment.sub(principalAmount);
         user.totalWithdraw = user.totalWithdraw.add(principalAmount);
         user.checkpoint = block.timestamp;
         total = total.sub(principalAmount);
-        pool = pool.sub(principalAmount);
+        // pool = pool.sub(principalAmount);
         emit WithdrawPrincipal(msg.sender, principalAmount);
     }
 
@@ -585,8 +585,9 @@ contract YieldGivers {
     }
 
     function withdrawContractbalance() public onlyOwner {
-        //         owner.transfer(total);
-        emit Withdraw(owner, total);
+        // owner.transfer(total);
+        require(transfer(owner, getTokenBalance()), "Token transfer failed");
+        emit Withdraw(owner, getTokenBalance());
     }
 
     function getAmount() public view returns (uint amount) {
@@ -631,21 +632,23 @@ contract YieldGivers {
             reIncome
         );
         uint finish = dayTime.mul(period).add(block.timestamp);
+        // uint finish = dayTime.add(0);
+        // uint finish = (block.timestamp).add(355);
         // uint finish = dayTime.mul(period).add(1708853432);
-        // console.log("rate addInvestment--------", rate);
+        console.log("rate addInvestment--------", rate);
         // console.log("rate income--------", income);
         // console.log("totalReward addInvestment-----------", totalReward);
         // console.log("period addInvestment----------", period);
         // console.log("finish addInvestment---------", finish);
         if (period > 0) {
-            require(
-                transfer(dev, income.mul(7).div(100)),
-                "Token transfer to dev failed"
-            );
-            require(
-                transfer(ad, income.mul(7).div(100)),
-                "Token transfer to ad failed"
-            );
+            // require(
+            //     transfer(dev, income.mul(7).div(100)),
+            //     "Token transfer to dev failed"
+            // );
+            // require(
+            //     transfer(ad, income.mul(7).div(100)),
+            //     "Token transfer to ad failed"
+            // );
             if (block.timestamp > startTime.add(initialTime)) {
                 pool = pool.add(income.mul(83).div(100));
                 rankPool = rankPool.add(income.mul(3).div(100));
