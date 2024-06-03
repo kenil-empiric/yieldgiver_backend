@@ -328,7 +328,7 @@ app.get("/getTotalContractBalance", async function (req, res) {
   }
 });
 
-app.get("/WithdrawContractBalance",isOwner, async function (req, res) {
+app.get("/WithdrawContractBalance", isOwner, async function (req, res) {
   try {
     const planOneAmount = await signcontract.withdrawContractbalance();
     res.status(200).json({
@@ -339,7 +339,5 @@ app.get("/WithdrawContractBalance",isOwner, async function (req, res) {
     res.status(500).json({ mesasage: error });
   }
 });
-
-
 
 app.listen(PORT);

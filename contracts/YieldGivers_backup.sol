@@ -55,7 +55,7 @@ interface IERC20 {
     function balanceOf(address account) external view returns (uint256);
 }
 
-contract YieldGivers {
+contract YieldGivers_backup {
     using SafeMath for uint256;
     address public tokenAddress;
     uint public startTime;
@@ -342,8 +342,7 @@ contract YieldGivers {
         if (typeNum == 1) {
             period = planOneDays; /* 140 days & 1% ~ 2% Daily = 350.6% ~ 1,394.4% COMPOUND ROI recomended */
             console.log("1 period inside getperiodrate==========", period);
-            // rate = getIncreasePct(); //.add(planOneRate);
-            rate = planOneMultiplier;
+            rate = getIncreasePct(); //.add(planOneRate);
             console.log("1 rate inside getperiodrate============", rate);
             totalReward = calcRewardCompound(income, rate, period);
             console.log(
@@ -353,8 +352,7 @@ contract YieldGivers {
         } else if (typeNum == 2) {
             period = planTwoDays; // 100 days @ 1.3% ~ 2.3% Daily = 363.87% ~ 971.77% COMPOUND ROI recomended
             console.log("2 period inside getperiodrate==========", period);
-            // rate = getRatio().mul(10); //.add(getIncreasePct()).add(planTwoRate);
-            rate = planTwoMultiplier;
+            rate = getRatio().mul(10); //.add(getIncreasePct()).add(planTwoRate);
             console.log("2 rate inside getperiodrate============", rate);
             totalReward = calcRewardCompound(income, rate, period);
             console.log(
@@ -364,8 +362,7 @@ contract YieldGivers {
         } else if (typeNum == 3) {
             period = planThreeDays; // 150 days & 1.7% ~ 2.7 Daily = 255% ~ 405% SIMPLE ROI recomended
             console.log("3 period inside getperiodrate==========", period);
-            // rate = getRatio().mul(10); //.add(getIncreasePct()).add(planThreeRate);
-            rate = planThreeMultiplier;
+            rate = getRatio().mul(10); //.add(getIncreasePct()).add(planThreeRate);
             console.log("3 rate inside getperiodrate============", rate);
             totalReward = calcReward(income, rate, period);
             console.log(
@@ -472,20 +469,19 @@ contract YieldGivers {
     function stake(address referrer, uint typeNum, uint Amount) public payable {
         require(block.timestamp >= startTime, "Not start");
         require(
-            Amount >= minInvestAmount/1000000,
+            Amount >= minInvestAmount,
             "Please invest more than the minimum amount"
         );
         require(
-            Amount <= maxInvestAmount/1000000,
+            Amount <= maxInvestAmount,
             "Please invest less than the maximum amount"
         );
 
         require(
             totalInvestmentByPool[typeNum].add(Amount) <=
-                pools[typeNum].maxInvestAmountPool/1000000,
+                pools[typeNum].maxInvestAmountPool,
             "Exceeds pool investment limit"
         );
-
         require(
             transferFrom(msg.sender, address(this), Amount),
             "Token transfer failed"
