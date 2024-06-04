@@ -340,4 +340,20 @@ app.get("/WithdrawContractBalance", isOwner, async function (req, res) {
   }
 });
 
+app.post("/getallinfo", async function (req, res) {
+  try {
+    const { number } = req.body;
+    console.log("number",number);
+    const Allinfo = await contract.getPoolAllInfo(number);
+    console.log(Allinfo);
+    res.status(200).json({
+      message: "Success",
+      Allinfo:Allinfo,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mesasage: error });
+  }
+});
+
 app.listen(PORT);
