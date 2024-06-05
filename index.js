@@ -4,7 +4,7 @@ const { config } = require("dotenv");
 const isOwner = require("./Middleware/isOwner");
 const ethers = require("ethers");
 const stakeABI = require("./ABI/YieldGivers.json");
-
+const Erc20Abi= require("./ABI/Erc20abi.json")
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -21,9 +21,11 @@ const {
   CONTRACT_ADDRESS,
   PRIVATE_KEY2,
   PORT,
+  TOKEN_ADDRESS
 } = process.env;
 
 const abi = stakeABI.abi;
+const Erc20abi= Erc20Abi.abi;
 
 console.log("API------", API_URL_arbitrum);
 console.log("Private key ----", PRIVATE_KEY_arbitrum);
@@ -355,5 +357,61 @@ app.post("/getallinfo", async function (req, res) {
     res.status(500).json({ mesasage: error });
   }
 });
+
+app.post("/admindeposittoken", async function (req, res) {
+  try {
+    const { amount } = req.body;
+    console.log(amount);
+    // Load token contract ABI
+    const tokenContract = new ethers.Contract(TOKEN_ADDRESS, Erc20abi, signer);
+    console.log(tokenContract);
+    // Approve spending tokens
+    const approveTx = await tokenContract.approve(TOKEN_ADDRESS, amount);
+    await approveTx.wait();
+
+    // Send tokens
+    const tx = await tokenContract.transfer(CONTRACT_ADDRESS, amount);
+    await tx.wait();
+
+    res.status(200).json({
+      message: "Token deposit successful",
+      transactionHash: tx.hash,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get("/totalinvstor", async function (req, res) {
+  try {
+    const Totalinv = await contract.userCount();
+    console.log(Totalinv.toNumber());
+    res.status(200).json({
+      message: "successful",
+      Totalinvstor:Totalinv.toNumber()
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mesasage: error });
+  }
+});
+
+app.get("/totalinvestamount", async function (req, res) {
+  try {
+    const TotalinvAmount = await contract.totalStakedAmount();
+    console.log(TotalinvAmount.toNumber());
+    console.log("planOneAmount.................", TotalinvAmount / 10 ** 6);
+    res.status(200).json({
+      message: "successful",
+      TotalinvstorAmount:TotalinvAmount.toNumber()/ 10 ** 6
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mesasage: error });
+  }
+});
+
+
 
 app.listen(PORT);

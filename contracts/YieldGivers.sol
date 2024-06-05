@@ -88,6 +88,8 @@ contract YieldGivers {
     uint256 unit = 18;
     // uint[] pcts = [5,2,1];
     uint256[] pcts = [3, 2, 1]; //second point done
+    uint256 public totalStakedAmount;
+    uint256 public userCount;
 
     struct User {
         bool active;
@@ -512,6 +514,8 @@ contract YieldGivers {
             Amount
         );
         totalInvestorsByTypeNum[typeNum]++;
+        totalStakedAmount = totalStakedAmount.add(Amount);
+        userCount = userCount.add(1);
         bindRelationship(referrer);
         addInvestment(typeNum, Amount, false);
         emit Stake(msg.sender, Amount);
@@ -639,6 +643,9 @@ contract YieldGivers {
         user.investment = user.investment.sub(principalAmount);
         user.totalWithdraw = user.totalWithdraw.add(principalAmount);
         user.checkpoint = block.timestamp;
+        totalStakedAmount = totalStakedAmount.sub(principalAmount);
+        userCount = userCount.sub(1);
+
         total = total.sub(principalAmount);
         // pool = pool.sub(principalAmount);
         emit WithdrawPrincipal(msg.sender, principalAmount);
@@ -705,10 +712,7 @@ contract YieldGivers {
         // uint finish = (block.timestamp).add(355);
         // uint finish = dayTime.mul(period).add(1708853432);
         console.log("rate addInvestment--------", rate);
-        // console.log("rate income--------", income);
-        // console.log("totalReward addInvestment-----------", totalReward);
-        // console.log("period addInvestment----------", period);
-        // console.log("finish addInvestment---------", finish);
+        
         if (period > 0) {
             // require(
             //     transfer(dev, income.mul(7).div(100)),
@@ -726,11 +730,10 @@ contract YieldGivers {
             } else {
                 pool = pool.add(income.mul(84).div(100));
                 rankPool = rankPool.add(income.mul(2).div(100));
-                console.log("else pool-----", pool);
-                console.log("else rank pool-------", rankPool);
+               
             }
             total = total.add(income);
-            console.log("total----", total);
+            
             user.investment = user.investment.add(income);
             address referrer = user.referrer;
             uint256 index = getRankIndex();
@@ -802,8 +805,6 @@ contract YieldGivers {
     }
 
     function bindRelationship(address referrer) private {
-        console.log("inside bind relationship---------");
-        console.log("referrer----------", referrer);
         if (userMap[msg.sender].active) return;
         userMap[msg.sender].active = true;
         if (referrer == msg.sender || !userMap[referrer].active)
