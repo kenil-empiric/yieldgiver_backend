@@ -60,9 +60,10 @@ app.post("/setMaxInvestAmount", isOwner, async function (req, res) {
 app.get("/getMaxInvestAmount", async function (req, res) {
   try {
     const maxamount = await contract.maxInvestAmount();
-    const maxAmountValue = maxamount.toNumber();
-
-    res.status(200).json({ maxamount: maxAmountValue });
+    console.log(maxamount.toString());
+    // const maxAmountValue = maxamount.toNumber();
+    // console.log(maxAmountValue);
+    res.status(200).json({ maxamount: maxamount.toString() });
   } catch (error) {
     console.error(error);
     res.status(500).json({ mesasage: error });
@@ -87,9 +88,10 @@ app.post("/setMinInvestAmount", isOwner, async function (req, res) {
 app.get("/getMinInvestAmount", async function (req, res) {
   try {
     const minamount = await contract.minInvestAmount();
-    const minAmountValue = minamount.toNumber();
+    // const minAmountValue = minamount.toNumber();
+    console.log(minamount.toString());
 
-    res.status(200).json({ minamount: minAmountValue });
+    res.status(200).json({ minamount: minamount.toString() });
   } catch (error) {
     console.error(error);
     res.status(500).json({ mesasage: error });
