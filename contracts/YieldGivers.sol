@@ -337,13 +337,13 @@ contract YieldGivers {
         uint256 period
     ) public pure returns (uint256 reward) {
         reward = income;
-        console.log("income inside calculate function------", income);
+        
         for (uint256 i = 0; i < 18; i++) {
             if (period > i) reward = reward.mul(rate).div(1000).add(reward);
             else reward = reward.mul(0).div(1000).add(reward);
         }
         reward = reward.sub(income);
-        console.log("reward inside compound calculate function ------", reward);
+       
     }
 
     function getPeriodAndRate(uint256 typeNum, uint256 income)
@@ -357,7 +357,7 @@ contract YieldGivers {
     {
         if (typeNum == 1) {
             period = planOneDays; /* 140 days & 1% ~ 2% Daily = 350.6% ~ 1,394.4% COMPOUND ROI recomended */
-            console.log("1 period inside getperiodrate==========", period);
+            
             // rate = getIncreasePct(); //.add(planOneRate);
             rate = planOneMultiplier;
             console.log("1 rate inside getperiodrate============", rate);
@@ -458,10 +458,8 @@ contract YieldGivers {
 
     function getIncreasePct() public view returns (uint256 increasePct) {
         (, uint256 time) = block.timestamp.trySub(startTime);
-        console.log("time====", time);
-        console.log("increase time-----", increaseTime);
         increasePct = time.div(increaseTime);
-        console.log("increase pct=====", increasePct);
+        
     }
 
     function getPlanOneRate() public view returns (uint256 planOnePct) {
@@ -535,12 +533,14 @@ contract YieldGivers {
     function updateReward(uint256 amount) private returns (uint256) {
         uint256 income = getAmount();
         // console.log("income in update reward------", income);
-        // console.log("pool updatereward--------", pool);
+        console.log("pool updatereward--------", pool,income);
+        console.log("-----msg.sender",msg.sender);
         User storage user = userMap[msg.sender];
         if (amount == 0 || amount > income) amount = income;
         if (amount > pool) amount = pool;
+        console.log("amount-------",amount);
         require(amount > 0, "Error amount");
-        user.totalReward = income.sub(amount);
+        user.totalReward = user.totalReward.sub(amount);
         user.totalWithdraw = user.totalWithdraw.add(amount);
         user.checkpoint = block.timestamp;
         pool = pool.sub(amount);
@@ -550,7 +550,7 @@ contract YieldGivers {
             pool < 10 * 10**unit
         ) insuranceTime = block.timestamp.add(dayTime);
         // console.log("insurance time in update reward-------", insuranceTime);
-        // console.log("amount in update reward------", amount);
+        console.log("amount in update reward------", amount);
         return amount;
     }
 
@@ -569,20 +569,22 @@ contract YieldGivers {
 
     function withdraw(uint256 amount) public {
         amount = updateReward(amount);
-        // console.log("amount in withdraw -----------",amount);
+        console.log("amount in withdraw -----------",amount);
         //  console.log("insurance time in withdraw-------",insuranceTime);
         if (insuranceTime > 0 && insuranceTime < block.timestamp) {
             require(transfer(msg.sender, amount), "Token transfer failed");
-        } else {
-            // insurancePool = insurancePool.add(amount.mul(10).div(100));
-            insurancePool = insurancePool.add(amount.mul(20).div(100));
+        } 
+        // else {
+        //     // insurancePool = insurancePool.add(amount.mul(10).div(100));
+        //     insurancePool = insurancePool.add(amount.mul(20).div(100));
 
-            require(
-                transfer(msg.sender, amount.mul(80).div(100)),
-                "Token transfer failed"
-            );
-            console.log("transfer amount----------", amount.mul(80).div(100));
-        }
+        //     require(
+        //         transfer(msg.sender, amount.mul(80).div(100)),
+        //         "Token transfer failed"
+        //     );
+        //     console.log("transfer amount----------", amount.mul(80).div(100));
+        // }
+        
         emit Withdraw(msg.sender, amount);
     }
 
@@ -730,10 +732,11 @@ contract YieldGivers {
             } else {
                 pool = pool.add(income.mul(84).div(100));
                 rankPool = rankPool.add(income.mul(2).div(100));
-               
+                console.log("else pool-----", pool);
+                console.log("else rank pool-------", rankPool);
             }
             total = total.add(income);
-            
+            console.log("total----", total);
             user.investment = user.investment.add(income);
             address referrer = user.referrer;
             uint256 index = getRankIndex();
@@ -805,6 +808,8 @@ contract YieldGivers {
     }
 
     function bindRelationship(address referrer) private {
+        console.log("inside bind relationship---------");
+        console.log("referrer----------", referrer);
         if (userMap[msg.sender].active) return;
         userMap[msg.sender].active = true;
         if (referrer == msg.sender || !userMap[referrer].active)

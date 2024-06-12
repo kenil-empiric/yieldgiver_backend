@@ -12,7 +12,7 @@ async function main() {
   // Set the start time and rank time (you can customize these values)
   const startTime = Math.floor(new Date().getTime() / 1000);
   const rankTime = Math.floor(new Date().getTime() / 1000);
-
+  
   const yieldgivers = await YieldGivers.deploy(
     TOKEN_ADDRESS,
     DEV_ADDRESS,

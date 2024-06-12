@@ -307,11 +307,12 @@ app.get("/getTotalInvesment/pool/:id", async function (req, res) {
   try {
     const { id } = req.params;
     const planOneAmount = await contract.getPoolMinMax(id);
+    console.log(planOneAmount[1]);
     console.log(
       "planOneAmount.................",
-      planOneAmount[1].toNumber() / 10 ** 6
+      Number(planOneAmount[1].toString()) / 10 ** 6
     );
-    res.status(200).json({ planTwoMul: planOneAmount[1].toNumber() / 10 ** 6 });
+    res.status(200).json({ planTwoMul:  Number(planOneAmount[1].toString()) / 10 ** 6 });
   } catch (error) {
     console.error(error);
     res.status(500).json({ mesasage: error });
@@ -353,6 +354,22 @@ app.post("/getallinfo", async function (req, res) {
     res.status(200).json({
       message: "Success",
       Allinfo:Allinfo,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mesasage: error });
+  }
+});
+
+app.post("/Withdrawearning", async function (req, res) {
+  try {
+    const { number } = req.body;
+    console.log("number",number);
+    const Allinfo = await contract.withdraw(number);
+    console.log(Allinfo);
+    res.status(200).json({
+      message: "Success",
+      Allinfo: Allinfo,
     });
   } catch (error) {
     console.error(error);
