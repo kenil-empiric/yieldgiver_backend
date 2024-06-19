@@ -377,6 +377,50 @@ app.post("/Withdrawearning", async function (req, res) {
   }
 });
 
+app.post("/SetCooldownPeriod", async function (req, res) {
+  try {
+    const { durationInMinutes } = req.body; // Assuming the duration is provided in minutes
+    console.log("Setting cooldown period with duration:", durationInMinutes);
+ 
+    // Call the smart contract method to set cooldown period
+    const tx = await signcontract.setCoolDownPeriod(durationInMinutes);
+
+    console.log("Transaction hash:", tx.transactionHash);
+
+    res.status(200).json({
+      message: "Cooldown period set successfully",
+      transactionHash: tx.transactionHash,
+    });
+  } catch (error) {
+    console.error("Error setting cooldown period:", error);
+    res.status(500).json({ message: "Failed to set cooldown period", error: error.message });
+  }
+});
+
+app.post("/SetMaxInvestmentLimit", async function (req, res) {
+  try {
+    const { maxInvestmentLimit } = req.body; // Assuming max investment limit is provided in request body
+    console.log("Setting max investment limit:", maxInvestmentLimit);
+
+    // Call the smart contract method to set max investment limit
+    const tx = await signcontract.setMaxInvestmentLimit(maxInvestmentLimit);
+
+    // Wait for the transaction to be mined
+    await tx.wait();
+
+    console.log("Transaction hash:", tx.hash);
+
+    res.status(200).json({
+      message: "Max investment limit set successfully",
+      transactionHash: tx.hash,
+    });
+  } catch (error) {
+    console.error("Error setting max investment limit:", error);
+    res.status(500).json({ message: "Failed to set max investment limit", error: error.message });
+  }
+});
+
+
 app.post("/admindeposittoken", async function (req, res) {
   try {
     const { amount } = req.body;

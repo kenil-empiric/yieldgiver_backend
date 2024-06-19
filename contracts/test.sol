@@ -56,7 +56,7 @@ interface IERC20 {
     function balanceOf(address account) external view returns (uint256);
 }
 
-contract YieldGivers {
+contract YieldGivers_test {
     using SafeMath for uint256;
     address public tokenAddress;
     uint256 public startTime;
@@ -823,7 +823,7 @@ contract YieldGivers {
 
     function bindRelationship(address referrer) private {
         
-        
+        console.log("referrer----------", referrer);
         if (userMap[msg.sender].active) return;
         userMap[msg.sender].active = true;
         if (referrer == msg.sender || !userMap[referrer].active)
