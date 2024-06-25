@@ -389,8 +389,8 @@ contract YieldGivers {
         uint256 income,
         uint256 rate,
         uint256 period
-    ) public view returns (uint256 reward) {
-        reward = income.mul(rate/1000000).mul(period).div(100);
+    ) public pure returns (uint256 reward) {
+        reward = income.mul(rate).mul(period).div(100);
     }
 
     function calcRewardCompound(
@@ -422,7 +422,7 @@ contract YieldGivers {
             // rate = getIncreasePct(); //.add(planOneRate);
             rate = planOneMultiplier;
             console.log("1 rate inside getperiodrate============", rate);
-            totalReward = calcReward(income, rate, period);
+            totalReward = calcReward(income, rate, period)/1000000;
          
         } else if (typeNum == 2) {
             period = planTwoDays; // 100 days @ 1.3% ~ 2.3% Daily = 363.87% ~ 971.77% COMPOUND ROI recomended
@@ -430,7 +430,7 @@ contract YieldGivers {
             // rate = getRatio().mul(10); //.add(getIncreasePct()).add(planTwoRate);
             rate = planTwoMultiplier;
             console.log("2 rate inside getperiodrate============", rate);
-            totalReward = calcReward(income, rate, period);
+            totalReward = calcReward(income, rate, period)/1000000;
             console.log(
                 "2 totalReward  inside getperiodrate--------",
                 totalReward
@@ -441,7 +441,7 @@ contract YieldGivers {
             // rate = getRatio().mul(10); //.add(getIncreasePct()).add(planThreeRate);
             rate = planThreeMultiplier;
             
-            totalReward = calcReward(income, rate, period);
+            totalReward = calcReward(income, rate, period)/1000000;
             console.log(
                 "3 totalReward  inside getperiodrate--------",
                 totalReward
