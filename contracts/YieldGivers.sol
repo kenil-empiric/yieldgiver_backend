@@ -1,44 +1,94 @@
+
 /**
- *Submitted for verification at BSCScan.com on 2021-06-27
+ *Submitted for verification at arbiscan.io on 2024-06-15
  *
- *   Crypto Mint Cloud is a cross-chain investment ecosystem starting on the Ethereum BlockChain. Safe, legit, and profitable for everyone!
- *   The only official platform of the original Crypto Mint Cloud team! All other platforms with the same contract code are FAKE!
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@::::::::::::@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@:::::::@@@@@@@@@@@@@@@@::::-@@@@@:::::::::::::@@@@@@@
+@@@@@@@@@@@@@@@@@-:::::::::::::::-@@@@@@@::::::::::@@@@:::::::::::::@@@@@@@
+@@@@@@@@@@@@@@@:::::::::::::::::::::@@:::::::::::::@@@@@@@@@@@::::::@@@@@@@
+@@@@@@@@@@@@@::::::::::::::::::::::::::::::::::::-@@@@@::@@@@@::::::@@@@@@@
+@@@@@@@@@@@:::::::::@@@@@@@@@@@::::::::::::-@@@@@@@@@:::::-@@@::::::@@@@@@@
+@@@@@@@@@@-::::::#@@@@@@@@@@@@@@@::::::::@@@@@@@@@@:::::::::::::::::@@@@@@@
+@@@@@@@@@:::::::@@@@@@@@@@@@@@@@@@@:::::@@@@@@@@@::::::::@@:::::@@@@@@@@@@@
+@@@@@@@@@::::::@@@@@@@@@@@@@@@@@@@@@::@@@@@@@@@::::::::-@@@::::::@@@@@@@@@@
+@@@@@@@@:::::-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@::::::::@@@@@@:::::@@@@@@@@@@
+@@@@@@@@:::::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@::::::::@@@@@@@@::::::@@@@@@@@@
+@@@@@@@::::::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@::::::::@@@@@@@@@@::::::@@@@@@@@@
+@@@@@@@::::::@@@@@@@@@@@@@@@@@@@@@@@@@@@::::::::@@@@@@@@@@@@@:::::@@@@@@@@@
+@@@@@@@::::::@@@@@@@@@@@@@@@@@@@@@@@@@::::::::@@@@@@@@@@@@@@@:::::@@@@@@@@@
+@@@@@@@::::::@@@@@@@::::@@@@@@@@@@@@=:::::::-@@@@@@@@@@@@@@@::::::@@@@@@@@@
+@@@@@@@@:::::@@@@@::::::::@@@@@@@@@::::::::@@@@@@@@@@@@@@@@@::::::@@@@::=@@
+@@@@@@@@::::::@@::::::::::::@@@@@::::::::@@@@@@@@@@@@@@@@@@::::::@@@::::::- 
+@@@@@@@@@::::::::::::::::::::-@::::::::@@@@@@@@@@@@@@@@@@@-:::::@@@:::::::: 
+@@@@@@@@@::::::::::::@@::::::::::::::@@@@@@@@@@@@@@@@@@@@:::::::@@:::::::::
+@@@@@@@@@@:::::::::@@@@@@::::::::::@@@@@@@@@@@@@@@@@@@@@:::::::@@::::::::::
+@@@@@@@@@@@-::::::=@@@@@@@@::::::-@@@@@@@@@@@@@@@@@@@@@@:::::@@@@:::::::::@
+@@@@@@@@@@@@@:::::::-@@@@@@@@:::@@@@@@@@@@@@@@@@@@::::::@@@@@@@@:::::::::@@
+@@@@@@@@@@@@@@::::::::@@@@@@@@@@@@@@@@@@@@@@@@::::::::::::@@@@@:::::::::-@@
+@@@@@@@@@@@@@@@@:::::-@@@@@@@@@@@@@@@@@@::::::::::::::::::@@@@::::::::::@@@
+@@@@@@@@@@@@@@@@@@@@@:::::::::::::::::::::::::::::::::::::@@@@:::::::::@@@@
+@@@@@@@@@@@@@@@-:::::::::::::::::::::::::::::::::::::::::@@@@::::::::::@@@@
+@@@@@@@@@@@@-::::::::::::::::::::::::::::::::::::::::::@@@@:::::::::::@@@@@
+@@@@@@@@@@:::::::::::::::::::::::::::::::::::::::::-@@@@@::::::::::::@@@@@@
+@@@@@@@@::::::::::::::::::::::::::::::::::::::::@@@@@@::::::::::::::@@@@@@@
+@@@::::@:::::::::::::::::::::::::::::::::@@@@@@@@@::::::::::::::::-@@@@@@@@
+@::::::::@-::::::::::::::::::::::::::::::::::::::::::::::::::::::@@@@@@@@@@
+:::::::::::@::::::::::::::::::::::::::::::::::::::::::::::::::::@@@@@@@@@@@
+:::::::::::::@::::::::::::::::::::::::::::::::::::::::::::::::@@@@@@@@@@@@@
+@@::::::::::::@@::::::::::::::::::::::::::::::::::::::::::::@@@@@@@@@@@@@@@
+@@@@::::::::::::@@::::::::::::::::::::::::::::::::::::::::@@@@@@@@@@@@@@@@@
+@@@@@-::::::::::::@::::::::::::::::::::::::::::::::::::@@@@@@@@@@@@@@@@@@@@
+@@@@@@@:::::::::::::@:::::@@@@@@@@@:-::::::::::::::@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@:::::::::::::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@:::::::::::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@::::::::=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@-::::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+ *   Yield Givers is a cross-chain investment platform on the Arbitrum BlockChain. We offer the safest and most profitable investment strategies available, drastically outperforming the market and eradicating 99% of investment risks. We use halal investment strategies for the benefit of all humanity and the environment!
+ *   The only official platform of the original Yield Givers team! All other platforms with the same contract code are FAKE and are most likely scams looking to steal your money!
+ *   Always DYOR and make sure that you are investing in only programs that have a good reputation, sustainable strategies, non-anonymous teams, and an engaged community.
+ *   The ratio of quality platforms to scams is about 1:1000
+ *   The ratio of quality cryptocurrencies emerging on blockchains like BSC, Polygon, Arbitrum, or Solana is probably 99.99% scam coins or coins that have no purpose, so have no long term value
+ *   You can find more free info we provide at https://yieldgive.com/learn
  *
- *   ┌────────────────────────────────────────────────────────────────┐
- *   │   Website: https://yieldgive.com                               │
- *   │                                                                │
- *   │   Telegram Live Support: @yieldgivers-support                  │
- *   │   Telegram Public Group: @yieldgivers                          │
- *   │                                                                │
- *   │   E-mail: support@yieldgive.com                                │
- *   └────────────────────────────────────────────────────────────────┘
+ *   ┌─────────────────────────────────────────────┐
+ *   │                         Yield Givers Platform                │
+ *   │                     "Invest with Confidence"                 │
+ *   ├─────────────────────────────────────────────┤
+ *   │   Website: https://yieldgive.com                             │
+ *   │                                                              │
+ *   │   Telegram Live Support: @yieldgivers-support                │
+ *   │   Telegram Public Group: @yieldgivers                        │
+ *   │   Telegram Announcement Channel: @yieldgivers-announcements  │
+ *   │                                                              │
+ *   │   E-mail: support@yieldgive.com                              │
+ *   └─────────────────────────────────────────────┘
  *
- *   [USAGE INSTRUCTION] *
- *   1) Connect Metamask browser extension, or mobile wallet apps like MetaMask
- *   2) Choose one of the investment plans, enter the USDC amount (100 USDC Matic minimum) using the "Stake" button
+ *   [USAGE INSTRUCTION] ✍
+ *   1) Connect Metamask or WalletConnect wallet extension, or mobile wallet apps
+ *   2) Complete the Givestor Questionaire to get approved as an investor with Yield Givers
+ *   3) Explore your desired Pool by pressing the 'Explore Pool' button ne of the investment plans, by pressing the 'Choose Pool' button and enter your desired USDC amount using the "Stake" button
  *   3) Watch your earnings grow
- *   4) Reinvest and withdraw your earnings using the "Withdraw" or "Reinvest" buttons in your desired proportion
+ *   4) Reinvest or withdraw your earnings using the "Withdraw Earnings" button in your desired proportion
  *
- *   [INVESTMENT CONDITIONS] 🚀
- *   1) Minimum deposit: 100 BUSD, Maximum deposit: 100,000 USDC. Ther is no withdrawal limit.
- *   2) Total income is based on the performance of your plan (from .01% to 3.33% daily).
- *   3) ~Remove the Hold Bonus~
- *   4) Earnings every moment, withdraw any time for Plan #1.
- *   5) Earnings every moment, withdraw funds after the plan ends for Plans #2 - #4.
+ *   [INVESTMENT CONDITIONS] 🚀 
+ *   The following conditions we increase as our Total Platform Investment increase and our investment strategies allow for more sustainable growth:
+ *   1) Minimum deposit: During launch phase, it will be $10 USDC, which will increase as our investments on the platform increase and our investment strategies allow for more sustainable growth
+ *   2) Maximum deposit: During launch phase, it is $1,000 USDC, 
+ *   3) Daily Pool Yield for each pool is based on the performance of the underlying investments we use (this ranges from .01% to 3.33% daily).
+ *   4) The Cool Down Period between withdrawals of earnings will be flexible, but generally set to 1 week
+ *   5) Earnings every moment, withdraw of principal after the Lockup Period ends, which is set to 1 month now.
  *
  *   [AFFILIATE PROGRAM]  🚀
  *   3-level referral commission: Direct Commissions: 3% - 2nd Level: 2% - 3rd Level: 1%
  *
  *   [FUNDS DISTRIBUTION] *
- *   - 60% Main Platform Balance, participants payouts
- *   - 20% The Insurance Pool, the protections for withdrawals, where quarterly bonuses are paid from
- *   - 7% Advertising and promotion expenses
- *   - 7% Support, development, and administration
- *   - 6% Affiliate program bonuses
- *
- *     SPDX-License-Identifier: MIT
- */
-
+ *   - 80% used for investments and improving investor returns
+ *   - 7% Marketing, Advertising and Community Support
+ *   - 7% Web development, Educational Programs, and Fund Administration
+ *   - 6% Affiliate program bonus payments
+**/
+//SPDX-License-Identifier: MIT
 pragma solidity >=0.7.6 <0.9.0;
 import "hardhat/console.sol";
 
@@ -109,6 +159,7 @@ contract YieldGivers {
     struct Investment {
         uint256 start;
         uint256 finish;
+        uint256 staketotal;
         uint256 value;
         uint256 totalReward;
         uint256 period;
@@ -338,7 +389,7 @@ contract YieldGivers {
         uint256 income,
         uint256 rate,
         uint256 period
-    ) public pure returns (uint256 reward) {
+    ) public view returns (uint256 reward) {
         reward = income.mul(rate/1000000).mul(period).div(100);
     }
 
@@ -354,7 +405,6 @@ contract YieldGivers {
             else reward = reward.mul(0).div(1000).add(reward);
         }
         reward = reward.sub(income);
-       
     }
 
     function getPeriodAndRate(uint256 typeNum, uint256 income)
@@ -387,10 +437,10 @@ contract YieldGivers {
             );
         } else if (typeNum == 3) {
             period = planThreeDays; // 150 days & 1.7% ~ 2.7 Daily = 255% ~ 405% SIMPLE ROI recomended
-            console.log("3 period inside getperiodrate==========", period);
+            
             // rate = getRatio().mul(10); //.add(getIncreasePct()).add(planThreeRate);
             rate = planThreeMultiplier;
-            console.log("3 rate inside getperiodrate============", rate);
+            
             totalReward = calcReward(income, rate, period);
             console.log(
                 "3 totalReward  inside getperiodrate--------",
@@ -544,13 +594,10 @@ contract YieldGivers {
 
     function updateReward(uint256 amount) private returns (uint256) {
         uint256 income = getAmount();
-        // console.log("income in update reward------", income);
-        console.log("pool updatereward--------", pool,income);
         
         User storage user = userMap[msg.sender];
         if (amount == 0 || amount > income) amount = income;
         if (amount > pool) amount = pool;
-        console.log("amount-------",amount);
         require(amount > 0, "Error amount");
         user.totalReward = user.totalReward.sub(amount);
         user.totalWithdraw = user.totalWithdraw.add(amount);
@@ -776,12 +823,12 @@ contract YieldGivers {
                     ranking(referrer, rankMap[index][referrer]);
                 }
                 referrer = userMap[referrer].referrer;
-                console.log("investment referrer-----------", referrer);
             }
             user.investments.push(
                 Investment({
                     start: block.timestamp,
                     finish: finish,
+                    staketotal:reIncome,
                     value: reIncome.add(totalReward),
                     totalReward: totalReward,
                     period: period,
@@ -822,7 +869,6 @@ contract YieldGivers {
     }
 
     function bindRelationship(address referrer) private {
-        
         
         if (userMap[msg.sender].active) return;
         userMap[msg.sender].active = true;
