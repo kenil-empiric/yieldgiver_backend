@@ -4,7 +4,7 @@ const { config } = require("dotenv");
 const isOwner = require("./Middleware/isOwner");
 const ethers = require("ethers");
 const stakeABI = require("./ABI/YieldGivers.json");
-const Erc20Abi= require("./ABI/Erc20abi.json")
+const Erc20Abi = require("./ABI/Erc20abi.json");
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -21,11 +21,11 @@ const {
   CONTRACT_ADDRESS,
   PRIVATE_KEY2,
   PORT,
-  TOKEN_ADDRESS
+  TOKEN_ADDRESS,
 } = process.env;
 
 const abi = stakeABI.abi;
-const Erc20abi= Erc20Abi.abi;
+const Erc20abi = Erc20Abi.abi;
 
 console.log("API------", API_URL_arbitrum);
 console.log("Private key ----", PRIVATE_KEY_arbitrum);
@@ -41,6 +41,13 @@ const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
 const signer = new ethers.Wallet(PRIVATE_KEY_arbitrum, provider);
 
 const signcontract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+
+app.get("/ping", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Server running successfully.",
+  });
+});
 
 app.post("/setMaxInvestAmount", isOwner, async function (req, res) {
   try {
@@ -312,7 +319,9 @@ app.get("/getTotalInvesment/pool/:id", async function (req, res) {
       "planOneAmount.................",
       Number(planOneAmount[1].toString()) / 10 ** 6
     );
-    res.status(200).json({ planTwoMul:  Number(planOneAmount[1].toString()) / 10 ** 6 });
+    res
+      .status(200)
+      .json({ planTwoMul: Number(planOneAmount[1].toString()) / 10 ** 6 });
   } catch (error) {
     console.error(error);
     res.status(500).json({ mesasage: error });
@@ -348,12 +357,12 @@ app.get("/WithdrawContractBalance", isOwner, async function (req, res) {
 app.post("/getallinfo", async function (req, res) {
   try {
     const { number } = req.body;
-    console.log("number",number);
+    console.log("number", number);
     const Allinfo = await contract.getPoolAllInfo(number);
     console.log(Allinfo);
     res.status(200).json({
       message: "Success",
-      Allinfo:Allinfo,
+      Allinfo: Allinfo,
     });
   } catch (error) {
     console.error(error);
@@ -364,7 +373,7 @@ app.post("/getallinfo", async function (req, res) {
 app.post("/Withdrawearning", async function (req, res) {
   try {
     const { number } = req.body;
-    console.log("number",number);
+    console.log("number", number);
     const Allinfo = await contract.withdraw(number);
     console.log(Allinfo);
     res.status(200).json({
@@ -381,7 +390,7 @@ app.post("/SetCooldownPeriod", async function (req, res) {
   try {
     const { durationInMinutes } = req.body; // Assuming the duration is provided in minutes
     console.log("Setting cooldown period with duration:", durationInMinutes);
- 
+
     // Call the smart contract method to set cooldown period
     const tx = await signcontract.setCoolDownPeriod(durationInMinutes);
 
@@ -393,7 +402,9 @@ app.post("/SetCooldownPeriod", async function (req, res) {
     });
   } catch (error) {
     console.error("Error setting cooldown period:", error);
-    res.status(500).json({ message: "Failed to set cooldown period", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to set cooldown period", error: error.message });
   }
 });
 
@@ -416,10 +427,14 @@ app.post("/SetMaxInvestmentLimit", async function (req, res) {
     });
   } catch (error) {
     console.error("Error setting max investment limit:", error);
-    res.status(500).json({ message: "Failed to set max investment limit", error: error.message });
+    res
+      .status(500)
+      .json({
+        message: "Failed to set max investment limit",
+        error: error.message,
+      });
   }
 });
-
 
 app.post("/admindeposittoken", async function (req, res) {
   try {
@@ -452,7 +467,7 @@ app.get("/totalinvstor", async function (req, res) {
     console.log(Totalinv.toNumber());
     res.status(200).json({
       message: "successful",
-      Totalinvstor:Totalinv.toNumber()
+      Totalinvstor: Totalinv.toNumber(),
     });
   } catch (error) {
     console.error(error);
@@ -467,14 +482,12 @@ app.get("/totalinvestamount", async function (req, res) {
     console.log("planOneAmount.................", TotalinvAmount / 10 ** 6);
     res.status(200).json({
       message: "successful",
-      TotalinvstorAmount:TotalinvAmount.toNumber()/ 10 ** 6
+      TotalinvstorAmount: TotalinvAmount.toNumber() / 10 ** 6,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ mesasage: error });
   }
 });
-
-
 
 app.listen(PORT);
