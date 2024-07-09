@@ -10,15 +10,16 @@ app.use(cors());
 app.use(express.json());
 config();
 
-console.log("hello here");
-console.log("etehrs", ethers);
-
 const {
   API_URL,
   PRIVATE_KEY,
   API_URL_arbitrum,
   PRIVATE_KEY_arbitrum,
   CONTRACT_ADDRESS,
+
+  API_URL_arbitrum_mainnet,
+  PRIVATE_KEY_arbitrum_mainnet,
+
   PRIVATE_KEY2,
   PORT,
   TOKEN_ADDRESS,
@@ -27,18 +28,18 @@ const {
 const abi = stakeABI.abi;
 const Erc20abi = Erc20Abi.abi;
 
-console.log("API------", API_URL_arbitrum);
-console.log("Private key ----", PRIVATE_KEY_arbitrum);
+console.log("API------", API_URL_arbitrum_mainnet);
+// console.log("Private key ----", PRIVATE_KEY_arbitrum);
 // console.log("Private key2 -----", PRIVATE_KEY2);
 console.log("Stack contract Address------", CONTRACT_ADDRESS);
 console.log("Port--------", PORT);
 
-const provider = new ethers.providers.JsonRpcProvider(API_URL_arbitrum);
+const provider = new ethers.providers.JsonRpcProvider(API_URL_arbitrum_mainnet);
 // const provider = new ethers.providers.JsonRpcProvider(API_URL); // sepolia
 
 const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
 // const signer = new ethers.Wallet(PRIVATE_KEY, provider); //sepolia
-const signer = new ethers.Wallet(PRIVATE_KEY_arbitrum, provider);
+const signer = new ethers.Wallet(PRIVATE_KEY_arbitrum_mainnet, provider);
 
 const signcontract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
 
@@ -427,12 +428,10 @@ app.post("/SetMaxInvestmentLimit", async function (req, res) {
     });
   } catch (error) {
     console.error("Error setting max investment limit:", error);
-    res
-      .status(500)
-      .json({
-        message: "Failed to set max investment limit",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Failed to set max investment limit",
+      error: error.message,
+    });
   }
 });
 

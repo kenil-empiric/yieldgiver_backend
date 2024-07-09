@@ -18,8 +18,8 @@ async function main() {
     DEV_ADDRESS,
     AD_ADDRESS,
     TEAM_ADDRESS,
-    startTime,
-    rankTime
+    0,
+    0
   );
   await yieldgivers.deployed();
   console.log("YieldGivers deployed to:", yieldgivers.address);
